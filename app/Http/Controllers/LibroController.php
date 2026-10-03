@@ -35,20 +35,43 @@ class LibroController extends Controller
         $libro->archivo = basename($archivoRuta); 
         $libro->save();
 
-        return response()->json($datos); /* Esto nos permite ver los datos que se están enviando desde el formulario en formato JSON, lo cual es útil para depuración y verificación de los datos antes de guardarlos en la base de datos. */
+        /* return response()->json($datos); */ /* Esto nos permite ver los datos que se están enviando desde el formulario en formato JSON, lo cual es útil para depuración y verificación de los datos antes de guardarlos en la base de datos. */
 
-        /* return redirect()->route('libros.index'); */
+        return redirect()->route('libros.index');
     }
     
     public function show($id){
         return view('libros.show');
     }
     
-    public function edit($id){
-        return view('libros.edit');
+    public function edit(libro $libro){
+
+        return view('libros.edit', compact('libro'));
     }
     
-    public function update(Request $request, $id){
+    public function update(Request $request,libro $libro){
+
+        $libro->nombre = $request->nombre;
+        if ($request->hasFile('imagen')) {
+            // Eliminar la imagen anterior si existe
+            if (Storage::disk('public')->exists('imagenes/' . $libro->imagen)) {
+                Storage::disk('public')->delete('imagenes/' . $libro->imagen);   
+            }
+            // Guardar la nueva imagen
+            $imagenRuta = $request->file('imagen')->store('imagenes', 'public');
+            $libro->imagen = basename($imagenRuta);
+        }
+        if ($request->hasFile('archivo')) {
+            // Eliminar el archivo anterior si existe
+            if (Storage::disk('public')->exists('archivos/' . $libro->archivo)) {
+                Storage::disk('public')->delete('archivos/' . $libro->archivo);   
+            }
+            // Guardar el nuevo archivo
+            $archivoRuta = $request->file('archivo')->store('archivos', 'public');
+            $libro->archivo = basename($archivoRuta);
+        }
+        $libro->save();
+
         return redirect()->route('libros.index');
     }
 
