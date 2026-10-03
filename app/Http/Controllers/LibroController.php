@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 use App\Models\Libro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LibroController extends Controller
 {
     //
     public function index()
     {
-        return view('libros.index');
+        $libros = Libro::all();
+        return view('libros.index', compact('libros')); //compact('libros') es una forma de pasar la variable $libros a la vista, para que pueda ser utilizada en la misma.
     }
     public function create()
     {
@@ -21,16 +23,16 @@ class LibroController extends Controller
         $datos = request()->all();
 
         $nombre = $request -> nombre;
-        $imagen = $request ->file('imagen');
-        $archivo = $request ->file('archivo');
+        $imagenRuta = $request ->file('imagen')->store('imagenes', 'public');
+        $archivoRuta = $request ->file('archivo')->store('archivos', 'public');
         
-        $_imagen = $imagen->getClientOriginalName();
-        $_archivo = $archivo->getClientOriginalName();
+        /* $_imagen = $imagen->getClientOriginalName(); 
+        $_archivo = $archivo->getClientOriginalName(); */ //Sirve para obtener el nombre original del archivo cargado, pero no es necesario si estamos almacenando los archivos en el almacenamiento público de Laravel.
 
         $libro = new Libro(); 
         $libro->nombre = $nombre;
-        $libro->imagen = $_imagen;
-        $libro->archivo = $_archivo;
+        $libro->imagen = basename($imagenRuta);
+        $libro->archivo = basename($archivoRuta); 
         $libro->save();
 
         return response()->json($datos); /* Esto nos permite ver los datos que se están enviando desde el formulario en formato JSON, lo cual es útil para depuración y verificación de los datos antes de guardarlos en la base de datos. */
@@ -50,7 +52,18 @@ class LibroController extends Controller
         return redirect()->route('libros.index');
     }
 
-    public function destroy($id){
+    public function destroy(libro $libro){
+        
+        // Eliminar la imagen asociada al libro si existe
+        if (Storage::disk('public')->exists('imagenes/' . $libro->imagen)) {
+            Storage::disk('public')->delete('imagenes/' . $libro->imagen);   
+        };
+        // Eliminar el archivo asociado al libro si existe
+        if (Storage::disk('public')->exists('archivos/' . $libro->archivo)) {
+            Storage::disk('public')->delete('archivos/' . $libro->archivo);   
+        };
+
+        $libro->delete();
         return redirect()->route('libros.index');
     }
 }
