@@ -12,7 +12,13 @@
             <input type="text" name="nombre" value="{{ $libro->nombre }}" required>
             <br>
             <br>
-            <label for="imagen">Imagen de Portada:</label> &nbsp;{{ $libro->imagen }}&nbsp;
+            <label for="imagen">Imagen de Portada:</label> 
+            <br>
+            <br>
+            <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
+            <br>
+            <br>
+            {{-- &nbsp;{{ $libro->imagen }}&nbsp; --}}
             <input type="file" name="imagen">
             <br>
             <br>

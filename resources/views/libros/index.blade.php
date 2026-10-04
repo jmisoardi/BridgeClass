@@ -1,7 +1,5 @@
 {{-- @extends('layouts.app') --}}
 
-
-
 <h3>Vista de Listados de Libros</h3>
 
 {{-- @include('name') --}}
@@ -20,11 +18,17 @@
             @foreach ($libros as $libro)
                 <tr>
                     <td>{{ $libro->nombre }}</td>
-                    <td>{{ $libro->imagen }}</td>
+                    
+                    <td>{{-- {{ $libro->imagen }} --}}{{--  Este codigo me muestra el nombre del archivo de la imagen en la vista de listado de libros, pero no me muestra la imagen en sí. Para mostrar la imagen, se puede usar el siguiente código: --}}
+                         {{-- Esto me muestra la imagen en la vista de listado de libros, pero no la muestra en la vista de edición. Para mostrarla en la vista de edición, se puede usar el siguiente código: --}}
+                        <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
+                    </td>
+                    
                     <td>{{ $libro->archivo }}</td>
+
                     <td>
                         {{ $libro->id }}
-                        <a href="{{ route ('libros.show' , $libro->id ) }}" class="btn btn-info"> Ver </a>
+                        <a href="{{ route ('libros.show' , $libro ) }}" class="btn btn-info"> Ver </a>
                         <a href="{{ route ('libros.edit' , $libro ) }}" class="btn btn-secondary"> Editar </a> 
                         
                         <form action="{{ route('libros.destroy', $libro->id) }}" method="POST" style="display: inline-block;">

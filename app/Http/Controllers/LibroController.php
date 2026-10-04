@@ -40,8 +40,8 @@ class LibroController extends Controller
         return redirect()->route('libros.index');
     }
     
-    public function show($id){
-        return view('libros.show');
+    public function show(libro $libro){
+        return view('libros.show',compact('libro'));
     }
     
     public function edit(libro $libro){
