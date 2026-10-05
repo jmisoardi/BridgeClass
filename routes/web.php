@@ -18,3 +18,7 @@ Route::resource('libros', LibroController::class);
 /* Route::get('/libros/create', function () {
     return view('Libro.create');
 }); */
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

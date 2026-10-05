@@ -19,3 +19,4 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
 
     </form>
+<a href="{{ route ('libros.index') }}" class="btn btn-info"> << Regresar </a>

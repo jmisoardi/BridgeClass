@@ -31,7 +31,7 @@
             
         </form>
 
-        <a href="{{ route('libros.index') }}" class="btn btn-secondary">Regresar</a>
+        <a href="{{ route('libros.index') }}" class="btn btn-secondary"> << Regresar</a>
     
    {{--  @endsection --}}
 

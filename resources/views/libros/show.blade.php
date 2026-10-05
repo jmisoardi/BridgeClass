@@ -6,3 +6,4 @@
 
 <h2>{{ $libro->archivo }}</h2>
 
+<a href="{{ route ('libros.index') }}" class="btn btn-info"> << Regresar </a>

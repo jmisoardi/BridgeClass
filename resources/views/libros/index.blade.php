@@ -1,6 +1,9 @@
 {{-- @extends('layouts.app') --}}
 
-<h3>Vista de Listados de Libros</h3>
+<h3>Listados de Libros</h3>
+
+<br><a href="{{ route ('libros.create') }}" class="btn btn-info"> Subir un libro </a>
+
 
 {{-- @include('name') --}}
 
