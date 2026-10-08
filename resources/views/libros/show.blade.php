@@ -1,9 +1,15 @@
-<h3>Estamos en show.blade.php</h3>
+@extends('layouts.app')
 
-<h2>{{ $libro->nombre }}</h2>
+    @section('content')
 
-<img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
+        <h3>Estamos en show.blade.php</h3>
 
-<h2>{{ $libro->archivo }}</h2>
+        <h2>{{ $libro->nombre }}</h2>
 
-<a href="{{ route ('libros.index') }}" class="btn btn-info"> << Regresar </a>
+        <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
+
+        <h2>{{ $libro->archivo }}</h2>
+
+        <a href="{{ route ('libros.index') }}" class="btn btn-info"> << Regresar </a>
+    
+    @endsection        

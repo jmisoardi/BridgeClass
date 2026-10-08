@@ -1,6 +1,6 @@
-{{-- @extends('layouts.app') --}}
+@extends('layouts.app')
 
-   {{--  @section('contenido') --}}
+    @section('content')
 
         <h4> Vista de Edición de libros</h4>  
 
@@ -33,5 +33,5 @@
 
         <a href="{{ route('libros.index') }}" class="btn btn-secondary"> << Regresar</a>
     
-   {{--  @endsection --}}
+    @endsection
 
