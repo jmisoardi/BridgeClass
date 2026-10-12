@@ -5,7 +5,7 @@
             <div class="card">
                 {{-- <div class="card-header">Header</div> --}}
                 
-                <div class="card-header"><a href="{{ route('libros.index') }}" class="btn btn-secondary"> << Regresar</a></div>
+                <div class="card-header"><a href="{{ route('libros.index') }}" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Regresar</a></div>
                 <br>
                 <div class="text-center"><h2>Vista de Edicion de libro</h2></div>
                 
