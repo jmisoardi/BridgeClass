@@ -3,22 +3,24 @@
     @section('content')
 
         <div class="container">
+            <div>
+                <a href="{{ route ('libros.index') }}" class="btn btn-outline-secondary"> <i class="fa fa-arrow-left"></i> Regresar </a>
+            </div>
+            <br>
             <div class="card">
-                
-                <div class="card-header"><a href="{{ route ('libros.index') }}" class="btn btn-secondary"> <i class="fa fa-arrow-left"></i> Regresar </a></div>
+                <div class="card-header">
+                    <br>
+                    <h3 class="text-center">Vista de Edicion de libro</h3>
+                </div>
                 <br>
-                <div class="text-center"><h2>Vista de Edicion de libro</h2></div>
-                
                     <div class="card-body">
                         <h2>{{ $libro->nombre }}</h2>
-                        <br>
-                        
+                        <br>                        
                         <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
                         <br>
                         <br>
                         <br>
                         <h2>{{ $libro->archivo }}</h2>
-
                     </div>
                     <br>
                 <div class="card-footer text-body-secondary">
