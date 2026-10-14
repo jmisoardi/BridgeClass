@@ -13,15 +13,22 @@
                     <h3 class="text-center">Vista de Edicion de libro</h3>
                 </div>
                 <br>
-                    <div class="card-body">
+                    <div class="text-center" class="card-body">
                         <h2>{{ $libro->nombre }}</h2>
                         <br>                        
-                        <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
+                    
+                        <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="350px"> &nbsp;&nbsp;&nbsp; <a class="btn btn-light " href="{{ asset('storage/archivos/'.$libro->archivo) }}"><i class="fa fa-file-arrow-down"></i>  {{ $libro->archivo }}</a>
                         <br>
                         <br>
                         <br>
-                        <h2>{{ $libro->archivo }}</h2>
+                        <br>
+                        {{-- <a class="btn btn-outline-secondary btn-sm" href="{{ asset('storage/archivos/'.$libro->archivo) }}"><i class="fa fa-file-arrow-down"></i>{{ $libro->archivo }}</a> --}}
+                        <br>
+                        <br>
+                        <br>
+                        {{-- <h2>{{ $libro->archivo }}</h2> --}}
                     </div>
+                
                     <br>
                 <div class="card-footer text-body-secondary">
                     <br>

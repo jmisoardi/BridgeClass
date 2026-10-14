@@ -30,7 +30,7 @@
                                     </td>
                                     <td class="text-center" >{{-- {{ $libro->imagen }} --}}{{--  Este codigo me muestra el nombre del archivo de la imagen en la vista de listado de libros, pero no me muestra la imagen en sí. Para mostrar la imagen, se puede usar el siguiente código: --}}
                                         {{-- Esto me muestra la imagen en la vista de listado de libros, pero no la muestra en la vista de edición. Para mostrarla en la vista de edición, se puede usar el siguiente código: --}}
-                                        <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="100px">
+                                        <img src="{{ asset('storage/imagenes/' . $libro->imagen) }}" width="120px">
                                     </td>
                                     <td class="text-center">
                                         <br>
